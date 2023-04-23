@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <title></title>
+ 
+  
+  <!-- jQuery and jQuery Mobile -->
+		<link rel="stylesheet" href="jquery.mobile/jquery.mobile-1.2.1.min.css" />
+		<link rel="stylesheet" href="jquery.mobile/style.css">
+		    
+		<link rel="stylesheet" href="css/jquery.mobile.iscrollview.css">
+		<link rel="stylesheet" href="css/jquery.mobile.iscrollview-pull.css">
+		<!--<link href="css/demo.css" media="screen" rel="stylesheet" type="text/css" />-->
+		<script>
+	
+			
+		</script>
+	                                                           
+</head>
+<body onload="open_gallery();">
+<!-- Home -->
+<div data-role="page" id="splash" style="background-color:#000;" >
+    <div class="splash">
+        <img class="logo center-logo" src="jquery.mobile/images/logo.png" alt="splash" />
+    </div>
+    <div data-role="content">
+	
+            <ul class="buttons middle marginli"> 
+                <li data-role="list-divider"><a data-role="button" data-transition="slide" href="#login" onclick=""  class="gradient"  ><img class="button_img" src="jquery.mobile/images/contribute-icon.png" alt="" /><span class="label">Contribute</span><br><label class="button_label">Register/Post articles here.</label></a></li>
+                <li data-role="list-divider">
+				<a data-role="button" onclick="location.href='http://leftfree.com/blog/category/hd/'"  class="gradient"><img class="button_img" src="jquery.mobile/images/latest-icon.png" alt="" /><span class="label">Latest  Articles</span><br><label class="button_label">Read interesting write-ups .</label></a></li>
+            </ul>
+    </div>
+</div>
+<!--Home End--> 
+
+<!-- login -->
+<div data-role="page" id="login" style="background-color: #000;"> 
+	
+	<div data-role="header"> 
+		<a data-rel="back" href="#page1" class="margin_set back">Back </a>
+      		<h1>Login</h1>
+    	</div>
+<div data-role="content"> 
+
+  <div id="data"></div>
+	<div class="splash">
+        	<img class="logo login_logo" src="jquery.mobile/images/logo.png" alt="splash" />
+    	</div>
+   <div class="login_massege" id="login_massege"></div>
+    <div class="login_massege" id="login_massege1"></div>
+<p class="facebook_link">If you want to login with facebook please <br/><a href="" onclick="login();" >click here</a></p> 
+    
+        <div class="inner_container">
+		<form id="loginform1" method="post" >
+		<div class="white_box">
+            	<input type="email" required="true" name="user_email" id="user_email" placeholder="Email Id" class="user_area"  onblur="ValidateEmail();"/>
+           		<input type="password" required="true" name="user_password" id="user_password" placeholder="Password"  class="user_area user_area2" />
+		</div>
+		<div style="background:#000;">
+			<input type="checkbox" value="" id="remember" name="remember" />
+			<label for="remember" value="">Remember me</label>
+		</div>
+		<a href="#" class="  forgot"></a>
+           <div class="login"><input type="submit" name="submit" value="Login" class="login_new" id="login1" onClick="return false;">
+		   <input type="button" value="Register" onclick="location.href='#register'"></div>
+</form>
+        </div>
+    </div>
+</div>
+<!-- login -->
+
+<!-- register -->
+<div data-role="page" id="register" style="background-color: #000;"> 
+	
+	<div data-role="header"> 
+		<a data-rel="back" href="#page1" class="margin_set back">Back </a>
+      		<h1>Register</h1>
+    	</div>
+<div data-role="content"> 
+	<div class="splash">
+        	<img class="logo login_logo" src="jquery.mobile/images/logo.png" alt="splash" />
+    	</div>
+    <div class="login_massege" id="register_massege"></div>
+	  <div class="login_massege" id="register_massege1"></div>
+	<form id="registerform" method="post">
+        <div class="inner_container">
+		<div class="white_box white_box_new">
+            		<input type="email" name="user_email" id="user_email_l" placeholder="Email Id" class="user_area" required="true" onblur="ValidateEmail1();" />
+			<input type="password" name="user_password" id="user_password_l" placeholder="Password" class="user_area" required="true" />
+			<input type="text" name="country" id="country" placeholder="Country"  class="user_area user_area2"
+required="true"	/>
+		</div>
+           <div class="login"><input type="submit" value="Register" id="register1" onClick="return false;" ></div>
+
+        </div>
+	</form>	
+    </div>
+</div>
+<!-- register -->
+
+
+<!-- Contribute page-->
+<div data-role="page" id="contribute" style="background-color:#000;"> 
+     <div data-role="header"> 
+      <!-- <a data-rel="back" href="#page1" class="margin_set back">Back </a>-->
+      <h1>Contribute</h1> 
+    </div> 
+    <div data-role="content middle">
+            <ul class="buttons1 marginli"> 
+                <li data-role="list-divider" onclick="redirect_page();"><a data-role="button"  class="gradient" data-ajax="false"><img class="button_img" src="jquery.mobile/images/select_photo.png" alt="" /><span class="label">Select a photo</span></a></li>
+                <li data-role="list-divider" onclick="capturePhoto();"><a data-role="button"  class="gradient"><img class="button_img" src="jquery.mobile/images/camera.png" alt="" /><span class="label">Take a photo</span></a></li>
+            </ul>
+    </div>
+</div>
+<!--Contribute End-->
+<!--Select Photo-->
+
+
+<div data-role="page" data-theme="b"  data-add-back-btn="true" data-back-btn-text="Back" id="select" style="background: #000;" > 
+    <div data-role="header"> 
+       <a data-rel="back" href="#contribute" class="margin_set arrow_back back">
+            Back
+        </a>
+      <h1>Select a Photo</h1> 
+      <a data-rel="next" href="#report" class="report"  >
+            <img class="select_pth" src="jquery.mobile/images/report.png" alt="" />
+        </a>
+    </div> 
+    <div  data-role="content"  class="iscroll-content">
+        <div class="example-wrapper" data-iscroll>
+		
+		<ul  class="gallery" data-role="listview">
+	
+	
+		</ul>
+	</div>	
+        
+        
+    </div>
+    <div data-theme="a" data-role="footer" data-position="fixed">
+        <a data-role="button" href="#page1" class="ui-btn-left footer_left_icon" >
+            <!--<img src="jquery.mobile/images/camera_btn2.png" alt="" />-->
+        </a>
+	<h3><a class="color" href="">All</a></h3>
+        <a data-role="button" href="#page1" class="ui-btn-right footer_left_icon">
+            <!--<img src="jquery.mobile/images/edit2.png" alt="" />-->
+        </a>
+        
+    </div>
+</div>
+<!--Select Photo End-->
+<!-- Report -->
+<div data-role="page" id="report" style="background-color: #000;"> 
+	
+	<div data-role="header">
+		<a data-rel="back" href="#page1" class="margin_set back">Back</a> 
+      		<h1>Report a Story</h1>
+			<a data-rel=""  class="category"  href="#checkbox">Categories
+            <!--<img src="jquery.mobile/images/done_btn.png" alt="" class="done_btn" />-->
+        </a>
+    	</div>
+<div data-role="content" class="middle title_new"> 
+	<input class="title_text" value="" placeholder="Title" style="text-align:center;" id="report1"/>  
+	<img src="jquery.mobile/images/shadow.png" alt="" />
+	<textarea class="report_text" placeholder="Report Contents" style="text-align:center;" id="report_titile"></textarea> 
+    
+        
+    </div>
+</div>
+<!-- report -->
+
+<!-- checkbox -->
+<div data-role="page" id="checkbox" style="background-color: #000;"> 
+	
+	<div data-role="header">
+		<a data-rel="back" href="#page1" class="margin_set back">Back</a> 
+      		<h1 class="select_cate_new">Select Categories</h1>
+			
+    	</div>
+<div data-role="content" class="title_new" > 
+	<ul class="check_new">
+		<li><input type="checkbox" class="abc5" value="5" name="deco" data-deco="5" id="deco" /><label for="deco" >Home & Deco</label> </li>
+		<li><input type="checkbox" class="abc3" value="3" name="life" data-deco="3" id="life" /> <label for="life">Lifestyle</label></li>
+		<li><input type="checkbox" class="abc6" value="6" name="deli"  data-deco="6" id="deli"/> <label for="deli">Delicious</label></li>
+		<li><input type="checkbox" class="abc7" value="7" name="travel" data-deco="7" id="travel" /> <label for="travel">Travel</label></li>
+		<li><input type="checkbox" class="abc10" value="10" name="fashion" data-deco="10" id="fashion"/> <label for="fashion">Fashion</label></li>
+	
+		<li><!--<input type="button" value="Done" class="done_btn_new" id="uploader"/>-->
+			<button class="done_btn_new" id="uploader">
+				Done
+			</button>
+		</li>
+    </ul>
+        
+    </div>
+	
+
+
+
+</div>
+<!-- checkbox -->
+
+
+<!-- Main Page start -->
+<div data-role="page" id="pagebeforeshow" style="background-color: #000;"> 
+	</div>
+<!--main page End-->
+
+</body >
+  
+  <script src="jquery.mobile/jquery-1.8.3.min.js"></script>
+  <script src="js/demo.js" type="text/javascript"></script>
+  <script src="jquery.mobile/jquery.mobile-1.2.1.min.js"></script>
+  <script type="text/javascript" src="cordova.js"></script>
+  <script type="text/javascript" src="jquery.mobile/open_gallery.js"></script>
+  
+ <!--   
+  Extra Codiqa features -->
+  <script src="jquery.mobile/common.js"></script>
+  <script src="jquery.mobile/custom.js"></script>
+  <script src="jquery.mobile/royal-slider.js"></script>
+  <!-- scroller-->
+   <script src="js/iscroll.js"></script>
+   <script src="js/jquery.mobile.iscrollview.js"></script>
+  <script type="text/javascript" src="js/upclick-min.js"></script>
+ <!--  <script src="js/pull.image.js"></script>
+ end--->
+  <link rel="stylesheet" href="jquery.mobile/royal-slider.css">
+<script type="text/javascript" charset="utf-8">
+var auth_id="";
+var usere="";
+var imagesdata="";
+//=======================================redurect select page===============================================//
+			function redirect_page(){
+			$.mobile.loading( 'show', {
+			text: 'Loading',
+			textVisible: true,
+			theme: 'z',
+			html:''
+			});
+			setTimeout(function(){ 
+			$.mobile.loading('hide') ;
+			window.location.href="#select";
+			},4000);
+
+			}
+//=======================================end==================================================================//			
+
+
+//======================================email validation==================================================//
+			function ValidateEmail1()   
+			{  
+			var t=document.getElementById('user_email_l');
+			var x=t.value.indexOf('@');
+			var y=t.value.lastIndexOf('.');
+
+			if(x==-1 || y==-1 || (x+2)>=y){
+			document.getElementById('register_massege').innerHTML="Email format is not valid";
+
+			}
+			else{
+			document.getElementById('register_massege').innerHTML="";
+			}
+			} 
+			function ValidateEmail()   
+			{  
+			var t=document.getElementById('user_email');
+			var x=t.value.indexOf('@');
+			var y=t.value.lastIndexOf('.');
+
+			if(x==-1 || y==-1 || (x+2)>=y){
+			document.getElementById('login_massege').innerHTML="Email format is not valid";
+
+			}
+			else{
+			document.getElementById('login_massege').innerHTML="";
+			}
+			} 
+//====================================================end validation=======================================// 
+//====================================================document ready=======================================//
+$(document).ready(function(){
+			localStorage.clear();
+			var temp_url="http://leftfree.com";
+
+			$(document).on('submit','#register1',function(e){
+			return false;
+			});
+//====================================================register==============================================//			
+			$("#register1").click(function(e){
+			$.ajax({
+			type:"POST",
+			url:temp_url+"/chang_app/register.php",
+			dataType: "json",
+			data:{
+			user_email:$("#user_email_l").val(),
+			user_password:$("#user_password_l").val(),						
+			country:$("#country").val(),						
+			},
+			success:function(result){
+			document.getElementById('register_massege').innerHTML =result.status;
+			auth_id=result.author_id;
+			if(result.type){
+			$('input').val('');
+			$.mobile.loading( 'show', {
+			text: 'Please Wait',
+			textVisible: true,
+			theme: 'z',
+			html:''
+			});
+			setTimeout(function(){
+			$.mobile.loading('hide');
+			
+			window.location.href="#contribute";
+			document.getElementById('register_massege').innerHTML=" ";
+
+
+			},500)
+			}
+
+			}
+
+			});
+
+			});
+//======================================end registration=========================================================//		
+//======================================login ===================================================================//			
+			$(document).on('submit','#login1',function(e){
+			return false;
+			});
+			$('#login1').click(function(e) {
+			$.ajax({
+			type:"POST",
+			url:temp_url+"/chang_app/login.php",
+			dataType: "json",
+			data:{
+			user_email:$("#user_email").val(),
+			user_password:$("#user_password").val(),						
+			},
+			success:function(result){
+
+			document.getElementById('login_massege').innerHTML =result.status;
+			auth_id=result.author_id;
+			usere=result.user_email;
+			if(result.type){
+			$('input').val('');
+			$.mobile.loading( 'show', {
+			text: 'Please Wait',
+			textVisible: true,
+			theme: 'z',
+			html:''
+			});
+			setTimeout(function(){
+			$.mobile.loading('hide') ;
+			
+			window.location.href="#contribute";
+			document.getElementById('login_massege').innerHTML=" ";
+			
+			},500)
+
+			}
+			}
+			});
+			});
+			
+//=========================================================================================================//			
+			
+			
+
+//==============================================click upload button==============================================//
+			$('#uploader').click(function(){
+			var x;
+			var r=confirm("If you want post on the site then press OK!");
+			
+            var val = [];
+			var arr= [];
+			$('input[type=checkbox]:checked').each(function(i){
+			arr +=$(this).attr('data-deco')+",";
+			});
+			var imagesdata=Array();
+			$('.abc').each(function(){
+			imagesdata.push($(this).data('src'));
+			});
+			
+if(r==true){
+$.mobile.loading( 'show', {
+			text: 'Please wait',
+			textVisible: true,
+			theme: 'z',
+			html:''
+			});
+			setTimeout(function(){ $.mobile.loading('hide') },6000);
+            		
+//================================post ajax=================================================//			
+			var data_to_send = imagesdata.toString();
+			$.ajax({
+			type:"POST",
+			url:temp_url+"/chang_app/add_posts.php",
+			//dataType: "json",
+			data:{author_id:auth_id,useremail:usere,images:data_to_send,catg:arr,report1:$("#report1").val(),report_tilile:$("#report_titile").val()},
+			success:function(result){
+			if(result){
+			window.location.href = 'http://leftfree.com';
+
+			}
+			}
+
+			});
+}
+			
+//=========================================end post ajax==========================================================//
+//========================================image upload===========================================================//			
+			
+			
+
+			
+			
+			
+			for(var x=0; x<imagesdata.length; x++){
+
+			uploadPhoto(imagesdata[x]);
+			}
+			});
+//=================================================== upload=================================================//			
+			function uploadPhoto(imagesdata) {
+			path = imagesdata;
+			name = imagesdata.name;
+			//alert(imagesdata);
+			var options = new FileUploadOptions();
+			options.fileKey="file";
+			options.fileName=imagesdata.substr(imagesdata.lastIndexOf('/')+1);
+			//alert(options.fileName);
+			options.mimeType="image/jpeg";
+			var params = new Object();
+			params.fullPath = path;
+			params.name = name;
+			options.params = params;
+			options.chunkedMode = false;
+			var ft = new FileTransfer();
+			//alert(encodeURI("http://leftfree.com/chang_app/upload.php"));
+			ft.upload(path, encodeURI("http://leftfree.com/chang_app/upload.php"), win, fail, options);
+			}
+
+			function win(r) {
+			console.log("Code = " + r.responseCode);
+			console.log("Response = " + r.response);
+			console.log("Sent = " + r.bytesSent);
+			//alert("Response = " + r.response);
+			}
+
+			function fail(error) {
+			//alert("An error has occurred: Code = " + error.code);
+			console.log("upload error source " + error.source);
+			console.log("upload error target " + error.target);
+			}
+			
+
+		
+//======================================end upload========================================================//	
+           });	
+//======================================iscroll============================================================//	
+			$(document).on('pagebeforeshow', '#select', function(event){ 
+			//alert("show");
+
+			for(i = 0; i <9; i++) {
+			$(".example-wrapper div .iscroll-content").append();
+			$(".example-wrapper div .iscroll-content").append('<div style="display:block "><a data-role="" style="color:black"><li></li></a></div></br></br></br>');
+			}
+			$('[data-role="content"]').trigger('create');
+			$(".example-wrapper").iscrollview('refresh');
+			
+            });
+//===========================================end iscroll==================================================//
+			/*$(window).hashchange( function(){
+			if(window.location.hash=='#stomp'){
+			if(localStorage.getItem("recall") === null) {
+			localStorage.recall="d";
+			window.location.reload();
+			}
+			}
+			});*/
+			//document.addEventListener('DOMContentLoaded', loaded, false);
+			
+			
+</script>
+<script src="js/fb/cdv-plugin-fb-connect.js"></script>
+  <script src="js/fb/facebook-js-sdk.js"></script>
+<!--
+  <script src="js/phonegap.js"></script>
+-->   
+  <script type="text/javascript" src="jquery.mobile/facebook.js"></script>
+  </html>
